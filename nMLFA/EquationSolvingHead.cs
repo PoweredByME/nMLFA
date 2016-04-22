@@ -178,7 +178,7 @@ namespace EquationSolvingHead
 							theBatch.RemoveAt (counter + 1);
 						}
 					} 
-					} else if(x == "^"){
+					} else if(x == "^"){  //if there comes a rais to the power operator.
 						string next = theBatch [counter + 1];
 						if (!(next == "+") && !(next == "-") && !(next == "(") && Checker.isBasicOperator (next)) {
 							TheMessageHandler.MessagePrinter.Print ("Invalid Operator Sequence");

@@ -54,10 +54,12 @@ namespace EquationSolver
 			}  // end if case for expression of the type of "-a"
 
 			else {     //if there is a mathematical expression like a+ a
-				if(Division()){
-					if (Multiply ()) {
-						if (Add ()) {
-							Solution = theExpressionList [theExpressionList.IndexOf(getExpression(theBatch[0]))];
+				if(Power()){
+					if (Division ()) {
+						if (Multiply ()) {
+							if (Add ()) {
+								Solution = theExpressionList [theExpressionList.IndexOf (getExpression (theBatch [0]))];
+							}
 						}
 					}
 				} else {}
@@ -281,7 +283,46 @@ namespace EquationSolver
 			return solved;
 		}  //end function for division.
 
-
+		bool Power()
+		{
+			bool solved = true;
+			int counter = 0;
+			while (counter < theBatch.Count) {
+				string x = theBatch [counter];
+				if (x == "^") {
+					string lhs = theBatch [counter - 1];
+					string rhs = theBatch [counter + 1];
+					Expression lexp = new Expression (getExpression (lhs.TrimStart ("-".ToCharArray ())));
+					Expression rexp = new Expression (getExpression (rhs.TrimStart ("-".ToCharArray ())));
+					if (lexp.getExpType () == 2 && lexp.getExpType () == 2) {
+						Number lnum = new Number (lexp.getNumber ());
+						Number rnum = new Number (rexp.getNumber ());
+						if (lhs.Contains ("-")) {
+							lnum.setNumber (-1 * lnum.getNumber ());
+							theBatch [counter - 1] = theBatch [counter - 1].TrimStart ("-".ToCharArray ());
+							}
+						if (rhs.Contains ("-")) {
+							rnum.setNumber (-1 * rnum.getNumber ());
+							theBatch [counter + 1] = theBatch [counter + 1].TrimStart ("-".ToCharArray ());
+						}
+						Number ans = new Number ();
+						ans.setNumber (Math.Pow (lnum.getNumber(), rnum.getNumber()));
+						ans.setTag (lhs.TrimStart ("-".ToCharArray ()));
+						Expression exp = new Expression (ans);
+						theExpressionList [theExpressionList.IndexOf (getExpression (lhs.TrimStart ("-".ToCharArray ())))] = exp; 
+					} else {
+						TheMessageHandler.MessagePrinter.Print ("Invalid Operator for matrices");
+						solved = false;
+						Processed = false;
+						break;
+					}
+					theBatch.RemoveRange (counter, 2);
+					counter = 0;
+				}
+				counter++;
+			}
+			return solved;
+		}
 
 		////////////////////////Helper functions
 
