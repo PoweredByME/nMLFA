@@ -23,24 +23,29 @@ namespace EquationSolvingHead
 
 		void Observe()
 		{
-			OperatorManager ();
-			if (Processed) {
-				bool brakets = BrakettsExistsAndThereNumber ().exist;
-				if (!brakets) {
-					EquationSolver.DMASSolver dmasSolver = new EquationSolver.DMASSolver (theExpressionList, theBatch);
-					if (!dmasSolver.isProcessed ()) {
-						Processed = false;
-					} else {
-						Solution = dmasSolver.getSolution ();	
-					}
-				} else if (brakets) {
-					EquationSolver.BODMASSolver bodmasSolver = new EquationSolver.BODMASSolver (theExpressionList, theBatch);
-					if (bodmasSolver.isProcessed ()) {
-						Solution = bodmasSolver.getSolution ();
-					} else
-						Processed = false;
-				}
+			if (!(theBatch[theBatch.Count - 1]==")")&&Checker.isBasicOperator (theBatch [theBatch.Count - 1])) {
+				TheMessageHandler.MessagePrinter.Print ("Invalid operator sequence");
+				Processed = false;
 			} else {
+				OperatorManager ();
+				if (Processed) {
+					bool brakets = BrakettsExistsAndThereNumber ().exist;
+					if (!brakets) {
+						EquationSolver.DMASSolver dmasSolver = new EquationSolver.DMASSolver (theExpressionList, theBatch);
+						if (!dmasSolver.isProcessed ()) {
+							Processed = false;
+						} else {
+							Solution = dmasSolver.getSolution ();	
+						}
+					} else if (brakets) {
+						EquationSolver.BODMASSolver bodmasSolver = new EquationSolver.BODMASSolver (theExpressionList, theBatch);
+						if (bodmasSolver.isProcessed ()) {
+							Solution = bodmasSolver.getSolution ();
+						} else
+							Processed = false;
+					}
+				} else {
+				}
 			}
 		}
 

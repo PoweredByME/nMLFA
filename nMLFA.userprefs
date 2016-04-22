@@ -1,8 +1,11 @@
 ﻿<Properties StartupItem="nMLFA/nMLFA.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="nMLFA/BODMASSolver.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="nMLFA/DMASSolver.cs">
     <Files>
-      <File FileName="nMLFA/BODMASSolver.cs" Line="23" Column="3" />
+      <File FileName="nMLFA/EquationSolvingHead.cs" Line="181" Column="74" />
+      <File FileName="nMLFA/DMASSolver.cs" Line="25" Column="2" />
+      <File FileName="nMLFA/BODMASSolver.cs" Line="77" Column="25" />
+      <File FileName="nMLFA/StaticClasses.cs" Line="16" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

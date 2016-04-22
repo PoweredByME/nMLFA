@@ -25,7 +25,7 @@ namespace StringWatch
 	{
 		List<Expression> theExpressionList = new List<Expression>();
 		string givenExpression;
-		bool printExp = false;
+		bool printExp = false;    //it gets the signal from the other modules. the signals name in them is Processed. and it is a bool 
 		public void setString(string exp)=> givenExpression = exp.Trim();
 		public void Process() => Observe();
 		public StringObserver(){}
@@ -39,6 +39,7 @@ namespace StringWatch
 		{
 			if (string.IsNullOrWhiteSpace (givenExpression)) {
 				MessagePrinter.Print ("Nothing is given to me");
+				printExp = false; 
 			}
 			else if (Checker.isEquation (givenExpression)) {  // if the string is an equation. i.e. with an equality symbol 
 				if (Checker.getOccurance (givenExpression, '=') == 1) {  // if there is a correct formate(1 equality only)
