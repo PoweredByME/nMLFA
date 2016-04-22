@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using DataTypeSpace;
 using allSolverInterface;
 
+/// <summary>
+/// BODMAS solver.
+/// This code deals with the brakets and their precidence in BODMAS
+/// It extracts the priority string and then 
+/// sends ot to DMASSolver for further calculation.
+/// </summary>
+
 
 namespace EquationSolver
 {
@@ -22,7 +29,6 @@ namespace EquationSolver
 			this.theBatch = theBatch;
 			this.theExpressionList = theExpressionList;
 			Observe ();
-
 		}
 
 		void Observe()

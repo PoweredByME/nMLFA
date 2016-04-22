@@ -281,6 +281,8 @@ namespace EquationSolver
 			return solved;
 		}  //end function for division.
 
+
+
 		////////////////////////Helper functions
 
 		Expression getExpression(string tag)

@@ -13,7 +13,7 @@ namespace StaticClasses
 		//static string alphabets = "";
 		static string numbers = "0123456789.";
 		static string operators = "()*+-/^";
-		static string Alphabets = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMONPQRSTUVWXYZ_";
+	//	static string Alphabets = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMONPQRSTUVWXYZ_";
 		public static bool isEquation (string exp) => exp.Contains("=");
 		public static int getOccurance (string exp, char character)  // returns the occuracences of a specific character.
 		{ 
@@ -28,7 +28,7 @@ namespace StaticClasses
 		public static bool ifContainOperations (string exp) => (exp.Contains("(")||exp.Contains(")")||exp.Contains("+")||exp.Contains("-")||exp.Contains("*")||exp.Contains("/")||exp.Contains("^"));
 		public static bool isOperation (char character)=> operators.Contains(character.ToString());
 		public static bool isMatrixDeclaration (string exp) => (exp.Contains("[") || exp.Contains("]"));
-		public static bool isBasicOperator (string exp) => (exp.Contains("+")||exp.Contains("-")||exp.Contains("*")||exp.Contains("/") || exp.Contains(")"));  // tells wehter the operator is a '+ - * /'  function made specifically for the Operator Manager function of the equation head
+		public static bool isBasicOperator (string exp) => (exp.Contains("+")||exp.Contains("-")||exp.Contains("*")||exp.Contains("/") || exp.Contains(")") || exp.Contains("^"));  // tells wehter the operator is a '+ - * /'  function made specifically for the Operator Manager function of the equation head
 		public static bool isNumberDeclaration (string exp)
 		{ 
 			bool numeric = true;

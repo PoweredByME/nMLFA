@@ -178,7 +178,26 @@ namespace EquationSolvingHead
 							theBatch.RemoveAt (counter + 1);
 						}
 					} 
-				} else if (x == ")") {       // logic if there is no operator after ")" operator
+					} else if(x == "^"){
+						string next = theBatch [counter + 1];
+						if (!(next == "+") && !(next == "-") && !(next == "(") && Checker.isBasicOperator (next)) {
+							TheMessageHandler.MessagePrinter.Print ("Invalid Operator Sequence");
+							Processed = false;
+							break;
+						} else if (next == "+") {
+							theBatch.RemoveAt (counter + 1);
+						} else if (next == "-") {
+							if (Checker.isBasicOperator (theBatch [counter + 2])) {
+								TheMessageHandler.MessagePrinter.Print ("Invalid Operator Sequence");
+								Processed = false;
+								break;
+							} else {
+								theBatch [counter + 2] = "-" + theBatch [counter + 2];
+								theBatch.RemoveAt (counter + 1);
+							}
+						}
+					}
+					else if (x == ")") {       // logic if there is no operator after ")" operator
 					if (counter + 1 != theBatch.Count && !Checker.isBasicOperator (theBatch [counter + 1])) {
 						theBatch.Insert (counter + 1, "*");
 					}
