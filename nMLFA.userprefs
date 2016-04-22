@@ -1,11 +1,13 @@
 ﻿<Properties StartupItem="nMLFA/nMLFA.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="nMLFA/DMASSolver.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="nMLFA/StringWatch.cs">
     <Files>
-      <File FileName="nMLFA/EquationSolvingHead.cs" Line="181" Column="74" />
-      <File FileName="nMLFA/DMASSolver.cs" Line="25" Column="2" />
-      <File FileName="nMLFA/BODMASSolver.cs" Line="77" Column="25" />
-      <File FileName="nMLFA/StaticClasses.cs" Line="16" Column="4" />
+      <File FileName="nMLFA/EquationSolvingHead.cs" Line="26" Column="42" />
+      <File FileName="nMLFA/DMASSolver.cs" Line="147" Column="1" />
+      <File FileName="nMLFA/BODMASSolver.cs" Line="1" Column="1" />
+      <File FileName="nMLFA/StaticClasses.cs" Line="1" Column="1" />
+      <File FileName="nMLFA/Program.cs" Line="22" Column="12" />
+      <File FileName="nMLFA/StringWatch.cs" Line="42" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
