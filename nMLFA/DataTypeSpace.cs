@@ -1,5 +1,6 @@
 ﻿using System;
 using StaticClasses;
+using System.Threading;
 
 namespace DataTypeSpace
 {
@@ -65,6 +66,155 @@ namespace DataTypeSpace
 				}
 			}
 		}
+
+		// Helper functions and function for guass Jordan.
+
+		private void Swap(string rowOrColumn , int row1 , int row2)   //function for swaping for rows and columns.
+		{
+			if (rowOrColumn == "row") {   //start if case for row swapping.
+				if (row1 > mRows || row1 < 0 || row2 > mRows || row2 < 0)
+				{
+					Console.WriteLine("Sorry, the row swapping ain't possible");
+					return;
+				}
+				int column = this.mCols;
+				double temp = 0;
+				for (int i = 0; i<column; i++)
+				{
+					temp = theMatrix[row1 - 1,i];
+				    theMatrix[row1 - 1,i] = theMatrix[row2 - 1,i];
+					theMatrix[row2 - 1,i] = temp;
+				} 
+			}   //end else case for row swaping.
+			else {    //start case for column swaping.
+				if (row1 > mCols || row1 < 0 || row2 > mCols || row2<0)
+				{
+					Console.WriteLine ("Sorry, the swaping ain't gonna happen"); 
+					return;
+				}
+				double temp = 0;
+				int row = this.mRows;
+				for (int i = 0; i<row; i++)
+				{
+					temp = theMatrix[i,row1 - 1];
+					theMatrix[i,row1 - 1] = theMatrix[i,row2 - 1];
+					theMatrix[i,row2 - 1] = temp;
+				}
+			}   // end else case.
+		}    //end swap function .
+
+		private void rowaddition(int row1, int row2, double factor)  // function for row addition with a factor.
+		{
+			for (int i = 0; i < mCols; i++)
+			{
+				theMatrix[row2,i] += factor*(theMatrix[row1,i]);
+			}
+		}    //end row addition.
+			
+		private void columnaddition(int column1, int column2, double factor) //function for column addtion for factors.
+		{
+			for (int i = 0; i < mRows; i++)
+			{
+				theMatrix[i,column2] += factor*(theMatrix[i,column1]);
+			}
+		}    // end column addition.
+
+		private void divisionofrows(double factor, int rownum)  // function for division of rows
+		{
+			if (factor == 0)
+				return;
+			for (int i = 0; i < mCols; i++)
+			{
+				theMatrix[rownum,i] /= factor;
+			}
+		}   // end division of rows with a factor
+
+		private void divisionofcolumns(double factor, int colnum)  // function for the division of the columns with a factor
+		{
+			if (factor == 0)
+				return;
+			for (int i = 0; i < mRows; i++)
+			{
+				theMatrix[i,colnum] /= factor;
+			}
+		}     // end function of division of the columns
+
+		public void GaussElimination()     // method for the guass Elimination. // the echelon form.
+		{
+			int j, i;
+			bool calculation = false;
+			for (j = 0; j < mCols; j++)
+			{
+				for (i = 0; i < mRows; i++)
+				{
+					if (theMatrix[i,j] == 0)continue;
+					calculation = true;
+					divisionofrows(theMatrix[i,j], i);
+					for (int k = i + 1; k < mRows; k++)
+					{
+						rowaddition(i, k, -1 * theMatrix[k,j]);
+						theMatrix[k,j] = 0;
+					}
+					Swap("row", 1, i + 1);
+					int h = 1;
+					for (j = j + 1; j < mCols; j++, h++)
+					{
+						for (i = h; i < mRows; i++)
+						{
+							if (theMatrix[i,j] == 0)continue;
+							divisionofrows(theMatrix[i,j], i);
+							for (int k = i + 1; k < mRows; k++)
+							{
+								rowaddition(i, k, -1 * theMatrix[k,j]);
+								theMatrix[k,j] = 0;
+							}
+							Swap("row", h + 1, i + 1);
+						}
+					}
+				}
+			}
+	    }    // end method of guass Elimination.
+
+		public void GaussJordan()
+		{
+			int j, i;
+			bool calculation = false;
+			for (j = 0; j < mCols; j++)
+			{
+				for (i = 0; i < mRows; i++)
+				{
+					if (theMatrix[i,j] == 0)continue;
+					calculation = true;
+					divisionofrows(theMatrix[i,j], i);
+					for (int k = i+1; k < mRows; k++)
+					{
+						rowaddition(i, k, -1*theMatrix[k,j]);
+						theMatrix[k,j] = 0;
+					}
+					Swap("row", 1, i + 1);
+					int h = 1;
+					for ( j = j + 1; j < mCols; j++, h++)
+					{
+						for ( i = h; i < mRows; i++)
+						{
+							if (theMatrix[i,j] == 0)continue;
+							divisionofrows(theMatrix[i,j], i);
+							for (int k = 0; k < mRows; k++)
+							{
+								if (k == i)continue;
+								rowaddition(i, k, -1 * theMatrix[k,j]);
+								theMatrix[k,j] = 0;
+							}
+							Swap("row", h + 1, i + 1);
+						}
+					}
+					return;
+				}
+			}
+
+		}
+
+		//helper functions and functinos for guass jordan.
 
 		public double this [int aRow, int aCol] => theMatrix[aRow, aCol];
 
@@ -388,6 +538,7 @@ namespace DataTypeSpace
 			}
 		}
 		//end function for adjoint.
+
 
 	}
 	//end operations class.
